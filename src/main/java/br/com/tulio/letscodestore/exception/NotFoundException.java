@@ -1,4 +1,4 @@
-package br.com.letscode.lojaletscode.exception;
+package br.com.tulio.letscodestore.exception;
 
 public class NotFoundException extends RuntimeException {
 

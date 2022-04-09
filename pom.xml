@@ -8,11 +8,11 @@
 		<version>2.6.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.letscode</groupId>
-	<artifactId>loja-letscode</artifactId>
+	<groupId>br.com.tulio.letscodestore</groupId>
+	<artifactId>lets-code-store-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>loja-letscode</name>
-	<description>Demo project for Spring Boot</description>
+	<name>lets-code-store-api</name>
+	<description>lets-code-store-api</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

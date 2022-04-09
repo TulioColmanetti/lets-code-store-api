@@ -1,7 +1,7 @@
-package br.com.letscode.lojaletscode.repository;
+package br.com.tulio.letscodestore.repository;
 
-import br.com.letscode.lojaletscode.domain.Product;
-import br.com.letscode.lojaletscode.dto.ProductCategoryDTO;
+import br.com.tulio.letscodestore.domain.Product;
+import br.com.tulio.letscodestore.dto.ProductCategoryDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

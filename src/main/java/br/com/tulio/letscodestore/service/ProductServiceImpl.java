@@ -1,9 +1,9 @@
-package br.com.letscode.lojaletscode.service;
+package br.com.tulio.letscodestore.service;
 
-import br.com.letscode.lojaletscode.domain.Product;
-import br.com.letscode.lojaletscode.dto.ProductDTO;
-import br.com.letscode.lojaletscode.exception.NotFoundException;
-import br.com.letscode.lojaletscode.repository.ProductRepository;
+import br.com.tulio.letscodestore.domain.Product;
+import br.com.tulio.letscodestore.dto.ProductDTO;
+import br.com.tulio.letscodestore.exception.NotFoundException;
+import br.com.tulio.letscodestore.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-package br.com.letscode.lojaletscode.dto;
+package br.com.tulio.letscodestore.dto;
 
 import lombok.Getter;
 import lombok.Setter;

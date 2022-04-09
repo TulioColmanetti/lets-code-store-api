@@ -1,11 +1,11 @@
-package br.com.letscode.lojaletscode.controller;
+package br.com.tulio.letscodestore.controller;
 
-import br.com.letscode.lojaletscode.domain.Product;
-import br.com.letscode.lojaletscode.dto.ProductCategoryDTO;
-import br.com.letscode.lojaletscode.dto.ProductDTO;
-import br.com.letscode.lojaletscode.repository.ProductRepository;
-import br.com.letscode.lojaletscode.resources.ProductResponse;
-import br.com.letscode.lojaletscode.service.ProductServiceImpl;
+import br.com.tulio.letscodestore.domain.Product;
+import br.com.tulio.letscodestore.dto.ProductCategoryDTO;
+import br.com.tulio.letscodestore.dto.ProductDTO;
+import br.com.tulio.letscodestore.repository.ProductRepository;
+import br.com.tulio.letscodestore.resources.ProductResponse;
+import br.com.tulio.letscodestore.service.ProductServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

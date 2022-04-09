@@ -1,4 +1,4 @@
-package br.com.letscode.lojaletscode.domain;
+package br.com.tulio.letscodestore.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

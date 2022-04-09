@@ -1,6 +1,6 @@
-package br.com.letscode.lojaletscode.resources;
+package br.com.tulio.letscodestore.resources;
 
-import br.com.letscode.lojaletscode.domain.Product;
+import br.com.tulio.letscodestore.domain.Product;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;

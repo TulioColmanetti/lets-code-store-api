@@ -1,4 +1,4 @@
-package br.com.letscode.lojaletscode.domain;
+package br.com.tulio.letscodestore.domain;
 
 import lombok.Getter;
 import lombok.Setter;

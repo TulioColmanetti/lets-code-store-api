@@ -1,6 +1,6 @@
-package br.com.letscode.lojaletscode.resources;
+package br.com.tulio.letscodestore.resources;
 
-import br.com.letscode.lojaletscode.domain.ProductCategory;
+import br.com.tulio.letscodestore.domain.ProductCategory;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.BeanUtils;
