@@ -1,0 +1,550 @@
+{
+	"info": {
+		"_postman_id": "94da1463-26a7-4b26-8e17-c7d4981d1fc7",
+		"name": "Lets-Code-Store-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "List All Products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{address}}/store-letscode/all-products",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"all-products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Product By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{address}}/store-letscode/1",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"TV 4K (32 GB)\",\r\n    \"price\": 10000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/store-letscode/register-product",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"register-product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"TV 4K (32 GB)\",\r\n    \"price\": 223.22\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/store-letscode/1",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/store-letscode/1",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Products By Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{address}}/store-letscode/products/all-categories",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"products",
+								"all-categories"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Products By Filtered Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{address}}/store-letscode/products/all-categories/1",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"products",
+								"all-categories",
+								"1"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shop Cart",
+			"item": [
+				{
+					"name": "List All Shop Carts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{address}}/store-letscode/shop-cart",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"shop-cart"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Shop Cart By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{address}}/store-letscode/shop-cart/1",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"shop-cart",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Shop Cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productIdList\": [5,6,7]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/store-letscode/shop-cart",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"shop-cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Shop Cart Status to Ordered",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{address}}/store-letscode/shop-cart/order/1",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"shop-cart",
+								"order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Shop Cart Status to Cancelled",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{address}}/store-letscode/shop-cart/cancel/1",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"shop-cart",
+								"cancel",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Shop Cart Status to Delivered",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{address}}/store-letscode/shop-cart/deliver/1",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"shop-cart",
+								"deliver",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Shop Cart Status to Finished",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{address}}/store-letscode/shop-cart/finish/1",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"shop-cart",
+								"finish",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Shop Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sessionToken}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/store-letscode/shop-cart/1",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"store-letscode",
+								"shop-cart",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Access Control",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"sessionToken\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user1\",\r\n    \"password\": \"user1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/login",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
