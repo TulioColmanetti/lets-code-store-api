@@ -17,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @AllArgsConstructor
 @RestController
@@ -24,48 +26,68 @@ import javax.validation.Valid;
 public class ProductController {
 
     private final ProductServiceImpl productService;
-    private final ProductRepository productRepository;
-
 
     /* url  ?page=0&size=2&sort=name,asc */
     @GetMapping("/all-products")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> retrieveAllProducts(@PageableDefault(size = 5)
                                                  @SortDefault.SortDefaults({
+                                                         @SortDefault(sort = "price", direction = Sort.Direction.ASC),
                                                          @SortDefault(sort = "name", direction = Sort.Direction.DESC),
                                                          @SortDefault(sort = "id", direction = Sort.Direction.ASC)})
                                                          Pageable pageable) {
         Page<Product> products = productService.getAllProducts(pageable);
-        return ResponseEntity.ok(products);
-        //return ResponseEntity.ok(ProductResponse.fromDomain(products.toList()));
+        // return ResponseEntity.ok(products);
+        return ResponseEntity.ok(ProductResponse.fromDomain(products.toList()));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> retrieveProduct(@PathVariable Long id) {
-        Product product = productService.getProductById(id);
-        return ResponseEntity.ok(ProductResponse.fromDomain(product));
+        try {
+            Product product = productService.getProductById(id);
+            return ResponseEntity.ok(ProductResponse.fromDomain(product));
+        } catch (Exception e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("mensagem", e.getMessage());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+        }
     }
 
     @PostMapping("/register-product")
     public ResponseEntity<?> createProduct(@RequestBody @Valid ProductDTO request) {
-        Product product = productService.createProduct(request.getName(), request.getPrice());
-        return ResponseEntity.status(HttpStatus.CREATED).body(product);
+        try {
+            Product product = productService.createProduct(request.getName(), request.getPrice());
+            return ResponseEntity.status(HttpStatus.CREATED).body(product);
+        } catch (Exception e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("mensagem", e.getMessage());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+        }
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody @Valid ProductDTO request) {
-        return ResponseEntity.ok(productService.updateProduct(id, request));
+        try {
+            productService.updateProduct(id, request);
+        } catch (Exception e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("mensagem", e.getMessage());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
-        Product product = productService.getProductById(id);
-        productService.deleteProduct(product);
-        return ResponseEntity.noContent().build();
+        try {
+            productService.deleteProduct(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("mensagem", e.getMessage());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+        }
     }
 
-    @GetMapping()
-    public Page<ProductCategoryDTO> findByProductAndCategory(Pageable pageable){
-        return productRepository.findByProductAndCategory(pageable);
-    }
 }

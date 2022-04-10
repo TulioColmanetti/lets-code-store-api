@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,18 +20,21 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @Transactional
     @Override
     public Page<Product> getAllProducts(Pageable pageable) {
         return productRepository.findAll(pageable);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional
     @Override
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElseThrow(() -> new NotFoundException("product"));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional
     @Override
     public Product createProduct(String name, BigDecimal price) {
@@ -42,6 +46,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional
     @Override
     public Product updateProduct(Long id, ProductDTO request) {
@@ -50,10 +55,12 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(productUpdate);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional
     @Override
-    public void deleteProduct(Product product) {
-        productRepository.delete(product);
+    public void deleteProduct(Long id) {
+        Product productToDelete = getProductById(id);
+        productRepository.delete(productToDelete);
     }
 
 }
