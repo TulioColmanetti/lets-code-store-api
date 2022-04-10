@@ -1,6 +1,7 @@
 package br.com.tulio.letscodestore.service;
 
 import br.com.tulio.letscodestore.domain.Product;
+import br.com.tulio.letscodestore.dto.ProductCategoryDTO;
 import br.com.tulio.letscodestore.dto.ProductDTO;
 import br.com.tulio.letscodestore.exception.NotFoundException;
 import br.com.tulio.letscodestore.repository.ProductRepository;
@@ -61,6 +62,20 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(Long id) {
         Product productToDelete = getProductById(id);
         productRepository.delete(productToDelete);
+    }
+
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @Transactional
+    @Override
+    public Page<ProductCategoryDTO> getAllProductsByCategory(Pageable pageable) {
+        return productRepository.findProductsByCategory(pageable);
+    }
+
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @Transactional
+    @Override
+    public Page<ProductCategoryDTO> getAllProductsByFilteredCategory(Long id, Pageable pageable) {
+        return productRepository.findProductsByFilteredCategory(id, pageable);
     }
 
 }

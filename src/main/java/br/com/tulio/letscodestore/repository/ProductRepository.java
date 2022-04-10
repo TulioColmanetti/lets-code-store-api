@@ -11,12 +11,23 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-
+    /*ordenando pelo nome da categoria*/
     @Query(
-            value = "select p.nm_product AS name, p.price AS price, pc.name AS categoryName from ec_product as p " +
-                    "inner join ec_product_category_aux as pca on p.id = pca.product_id " +
-                    "inner join ec_product_category as pc on pc.id = pca.category_id", nativeQuery = true
+            value = "select pc.name as categoryName, p.nm_product as name, p.price " +
+                    "from ec_product_category pc " +
+                    "join ec_product_category_aux pca ON pca.product_id = pc.id " +
+                    "join ec_product p ON p.id = pca.category_id " +
+                    "order by pc.name", nativeQuery = true
     )
-    Page<ProductCategoryDTO> findByProductAndCategory(Pageable pageable);
+    Page<ProductCategoryDTO> findProductsByCategory(Pageable pageable);
 
+    /*filtrando produtos de uma categoria*/
+    @Query(
+            value = "select pc.name as categoryName, p.nm_product as name, p.price " +
+                    "from ec_product_category pc " +
+                    "join ec_product_category_aux pca ON pca.product_id = pc.id " +
+                    "join ec_product p ON p.id = pca.category_id " +
+                    "where pc.id = ?1", nativeQuery = true
+    )
+    Page<ProductCategoryDTO> findProductsByFilteredCategory(Long id, Pageable pageable);
 }

@@ -3,7 +3,6 @@ package br.com.tulio.letscodestore.controller;
 import br.com.tulio.letscodestore.domain.Product;
 import br.com.tulio.letscodestore.dto.ProductCategoryDTO;
 import br.com.tulio.letscodestore.dto.ProductDTO;
-import br.com.tulio.letscodestore.repository.ProductRepository;
 import br.com.tulio.letscodestore.resources.ProductResponse;
 import br.com.tulio.letscodestore.service.ProductServiceImpl;
 import lombok.AllArgsConstructor;
@@ -30,7 +29,7 @@ public class ProductController {
     /* url  ?page=0&size=2&sort=name,asc */
     @GetMapping("/all-products")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> retrieveAllProducts(@PageableDefault(size = 5)
+    public ResponseEntity<?> retrieveAllProducts(@PageableDefault(size = 10)
                                                  @SortDefault.SortDefaults({
                                                          @SortDefault(sort = "price", direction = Sort.Direction.ASC),
                                                          @SortDefault(sort = "name", direction = Sort.Direction.DESC),
@@ -88,6 +87,31 @@ public class ProductController {
             response.put("mensagem", e.getMessage());
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
         }
+    }
+
+    @GetMapping("/products/all-categories")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> retrieveAllProductsByCategory(@PageableDefault(size = 10)
+                                                 @SortDefault.SortDefaults({
+                                                         @SortDefault(sort = "name", direction = Sort.Direction.ASC),
+                                                         @SortDefault(sort = "id", direction = Sort.Direction.ASC)})
+                                                         Pageable pageable) {
+        Page<ProductCategoryDTO> productsByCategory = productService.getAllProductsByCategory(pageable);
+        return ResponseEntity.ok(productsByCategory);
+//        return ResponseEntity.ok(ProductResponse.fromDomain(products.toList()));
+    }
+
+    @GetMapping("/products/all-categories/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> retrieveAllProductsByFilteredCategory(@PathVariable Long id,
+                                                           @PageableDefault(size = 10)
+                                                           @SortDefault.SortDefaults({
+                                                                   @SortDefault(sort = "name", direction = Sort.Direction.ASC),
+                                                                   @SortDefault(sort = "id", direction = Sort.Direction.ASC)})
+                                                                   Pageable pageable) {
+        Page<ProductCategoryDTO> productsByCategory = productService.getAllProductsByFilteredCategory(id, pageable);
+        return ResponseEntity.ok(productsByCategory);
+//        return ResponseEntity.ok(ProductResponse.fromDomain(products.toList()));
     }
 
 }
