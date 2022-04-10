@@ -21,21 +21,21 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @Transactional
     @Override
     public Page<Product> getAllProducts(Pageable pageable) {
         return productRepository.findAll(pageable);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     @Override
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElseThrow(() -> new NotFoundException("product"));
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     @Override
     public Product createProduct(String name, BigDecimal price) {
@@ -47,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     @Override
     public Product updateProduct(Long id, ProductDTO request) {
@@ -56,7 +56,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(productUpdate);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     @Override
     public void deleteProduct(Long id) {
@@ -64,14 +64,14 @@ public class ProductServiceImpl implements ProductService {
         productRepository.delete(productToDelete);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @Transactional
     @Override
     public Page<ProductCategoryDTO> getAllProductsByCategory(Pageable pageable) {
         return productRepository.findProductsByCategory(pageable);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @Transactional
     @Override
     public Page<ProductCategoryDTO> getAllProductsByFilteredCategory(Long id, Pageable pageable) {
