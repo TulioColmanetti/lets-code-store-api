@@ -30,8 +30,4 @@ public class Product {
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 
-    @ManyToOne
-    @JoinColumn(name = "userId", nullable = false, updatable = false)
-    private User user;
-
 }

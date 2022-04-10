@@ -64,7 +64,6 @@ public class ProductController {
         return ResponseEntity.noContent().build();
     }
 
-
     @GetMapping()
     public Page<ProductCategoryDTO> findByProductAndCategory(Pageable pageable){
         return productRepository.findByProductAndCategory(pageable);
